@@ -14,13 +14,12 @@ const catchAsync = fn => (req, res, next) => {
   fn(req, res, next).catch(next);
 };
 
-function custom404(req, res, next) {
-  next(
-    new AppError(
-      `${req.method} on ${req.originalUrl} is not a valid request.`,
-      404
-    )
-  );
+function custom404(req, res) {
+  res
+    .status(404)
+    .json({
+      message: `${req.method} on ${req.originalUrl} is not a valid request.`,
+    });
 }
 
 function errorHandling(error, req, res, next) {
@@ -32,7 +31,7 @@ function errorHandling(error, req, res, next) {
   }
   //send verbose errors if they were manually generated
   //or if we're in a development environment
-  if (error instanceof AppError || process.env.NODE_ENV !== 'production' ) {
+  if (error instanceof AppError || process.env.NODE_ENV !== "production") {
     const { status = 500, message = "Error" } = error;
     return res.status(status).json({ message });
   }

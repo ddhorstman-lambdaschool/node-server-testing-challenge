@@ -36,7 +36,7 @@ router.delete(
   "/:id",
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    const count = await Pizzas.delete({ id });
+    const count = await Pizzas.deletePizza({ id });
     count == 0
       ? res.status(404).json(`Unable to delete a pizza with id '${id}'.`)
       : res.status(204).end();
