@@ -40,7 +40,7 @@ router.delete(
     const { id } = req.params;
     const count = await Pizzas.deletePizza({ id });
     count == 0
-      ? res.status(404).json({message:`Unable to delete a pizza with id '${id}'.`})
+      ? res.status(404).json({ message:`Unable to delete a pizza with id '${id}'.` })
       : res.status(204).end();
   })
 );

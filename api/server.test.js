@@ -8,7 +8,7 @@ describe("pizzaRouter", () => {
     await knex("pizzas").truncate();
     await knex("pizzas").insert([
       { name: "Grandma pizza" },
-      { name: "Hawaiian" },
+      { name: "Hawaiian pizza" },
     ]);
   });
 
@@ -36,7 +36,7 @@ describe("pizzaRouter", () => {
     it("Returns a 404 for an invalid ID", async () => {
       const res = await request(server).get(`${bU}/99`);
       expect(res.status).toBe(404);
-      expect(res.body.message).toContain("id");
+      expect(res.body.message).toContain("99");
     });
   });
 
@@ -69,7 +69,7 @@ describe("pizzaRouter", () => {
     it("Sends an error when trying to delete an invalid pizza", async () => {
       const res = await request(server).delete(`${bU}/99`);
       expect(res.status).toBe(404);
-      expect(res.body.message).toContain("id");
+      expect(res.body.message).toContain("99");
     });
   });
 });
