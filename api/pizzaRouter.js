@@ -25,7 +25,9 @@ router.post(
   catchAsync(async (req, res) => {
     const { name } = req.body;
     if (!name) {
-      return res.status(400).json(`Please specify a name for your pizza`);
+      return res
+        .status(400)
+        .json({ message: `Please specify a name for your pizza` });
     }
     const newPizza = await Pizzas.addPizza({ name });
     res.status(201).json(newPizza);
@@ -38,7 +40,7 @@ router.delete(
     const { id } = req.params;
     const count = await Pizzas.deletePizza({ id });
     count == 0
-      ? res.status(404).json(`Unable to delete a pizza with id '${id}'.`)
+      ? res.status(404).json({message:`Unable to delete a pizza with id '${id}'.`})
       : res.status(204).end();
   })
 );
