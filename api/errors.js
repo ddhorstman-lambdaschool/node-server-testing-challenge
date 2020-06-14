@@ -5,7 +5,6 @@ class AppError extends Error {
     super(message);
 
     this.status = status;
-    this.isOperational = true;
 
     Error.captureStackTrace(this, this.constructor);
   }
@@ -33,7 +32,7 @@ function errorHandling(error, req, res, next) {
   }
   //send verbose errors if they were manually generated
   //or if we're in a development environment
-  if (error instanceof AppError || true ) {
+  if (error instanceof AppError || process.env.NODE_ENV !== 'production' ) {
     const { status = 500, message = "Error" } = error;
     return res.status(status).json({ message });
   }
