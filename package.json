@@ -30,6 +30,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "helmet": "^3.22.1",
-    "jsonschema": "^1.2.6"
+    "jsonschema": "^1.2.6",
+    "knex": "^0.21.1",
+    "sqlite3": "^4.2.0"
   }
 }

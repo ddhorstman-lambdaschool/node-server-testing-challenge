@@ -8,6 +8,9 @@ server.use(helmet());
 server.use(express.json());
 //server.use(cors());
 
+const pizzaRouter = require("./pizzaRouter");
+server.use("/api/pizza",pizzaRouter);
+
 const { custom404, errorHandling } = require("./errors");
 server.all("*", custom404);
 server.use(errorHandling);
