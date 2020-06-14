@@ -1,18 +1,18 @@
 const knex = require("./dbConfig");
 
 function getPizzas() {
-  return null;
+  return knex("pizzas");
 }
-function getPizza(id) {
-  return null;
+function getPizza(search) {
+  return knex("pizzas").where(search);
 }
 
 function addPizza(pizza) {
-  return null;
+  return knex("pizzas").insert(pizza);
 }
 
-function deletePizza(id) {
-  return null;
+function deletePizza(search) {
+  return knex("pizzas").where(search).delete();
 }
 
 module.exports = { getPizzas, getPizza, addPizza, deletePizza };
